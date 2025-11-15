@@ -5,9 +5,16 @@ var card: String:
 	set(v):
 		_on_card_change(v)
 
-var textures = preload('res://assets/cards.tres')
+static var textures = preload('res://assets/cards.tres')
+
+
+func _ready() -> void:
+	$AnimationPlayer.play("RESET")
 
 func _on_card_change(card):
+	$AnimationPlayer.play("flip")
+	await $AnimationPlayer.animation_finished
+	
 	if card in Cards.card_names():
 		texture_normal = textures.duplicate()
 		texture_normal.region.position = Cards.position_of(card)
@@ -16,3 +23,4 @@ func _on_card_change(card):
 		texture_normal = ImageTexture.create_from_image(Image.load_from_file("res://assets/card_back.svg"))
 	#else:
 		#visible = false
+	$AnimationPlayer.play_backwards("flip")

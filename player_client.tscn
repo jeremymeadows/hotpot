@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cmntqh3kweg1e"]
 
-[ext_resource type="Script" path="res://player_client.gd" id="1"]
+[ext_resource type="Script" uid="uid://b5bugdw58o8i1" path="res://player_client.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://dtaf5jyt5pdui" path="res://card.tscn" id="2_vbick"]
 
 [node name="Player" type="Control"]
@@ -45,6 +45,7 @@ anchors_preset = 0
 scale = Vector2(0.7, 0.7)
 
 [node name="Card1" parent="Pot" instance=ExtResource("2_vbick")]
+visible = false
 custom_minimum_size = Vector2(132.6, 0)
 layout_mode = 0
 offset_left = 1002.86
@@ -55,6 +56,7 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="Card2" parent="Pot" instance=ExtResource("2_vbick")]
+visible = false
 custom_minimum_size = Vector2(132.6, 0)
 layout_mode = 0
 offset_left = 1164.29
@@ -65,6 +67,7 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="Card3" parent="Pot" instance=ExtResource("2_vbick")]
+visible = false
 custom_minimum_size = Vector2(132.6, 0)
 layout_mode = 0
 offset_left = 998.571
@@ -75,6 +78,7 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="Card4" parent="Pot" instance=ExtResource("2_vbick")]
+visible = false
 custom_minimum_size = Vector2(132.6, 0)
 layout_mode = 0
 offset_left = 824.286
@@ -85,7 +89,6 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="Cards" type="HBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5

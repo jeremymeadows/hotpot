@@ -19,11 +19,16 @@ func _ready():
 	$Status.text = "Connected, waiting for game to start\nPlayer %s" % multiplayer.get_unique_id()
 	Network.current_turn.connect(_on_turn)
 	Network.updated_pot.connect(_update_pot)
-	Network.game_over
+	Network.game_over.connect(_game_over)
 	
 	hand = await Network.dealt_hand
 	$Status.text = "Game Started!\nPlayer %s" % multiplayer.get_unique_id()
+	
+	$Deck.visible = true
 	$Cards.visible = true
+	
+	#$Deck/AnimationPlayer.play("RESET")
+	#$Deck.card = "none"
 	
 	for i in range(len(hand)):
 		await get_tree().create_timer(0.5).timeout
@@ -71,6 +76,11 @@ func _update_pot(pot):
 	for i in range(len(pot)):
 		if pot[i] == null:
 			$Pot.get_child(i).card = "none"
+			get_tree().create_timer(0.5).timeout.connect(func(): $Pot.get_child(i).visible = false)
 		else:
+			$Pot.get_child(i).visible = true
 			$Pot.get_child(i).card = pot[i]
 			#$Pot.get_child(i).visible = true
+
+func _game_over():
+	pass
