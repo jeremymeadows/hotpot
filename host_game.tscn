@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://1sjm73mauf66"]
 
-[ext_resource type="Script" path="res://host_game.gd" id="1_m3t5m"]
-[ext_resource type="PackedScene" uid="uid://dtaf5jyt5pdui" path="res://card.tscn" id="2_jr8u0"]
+[ext_resource type="Script" uid="uid://co25hngmj03s0" path="res://host_game.gd" id="1_m3t5m"]
+[ext_resource type="PackedScene" uid="uid://cmntqh3kweg1e" path="res://player_client.tscn" id="2_4lqbe"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qxxoh"]
 
@@ -14,16 +14,24 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_m3t5m")
 
-[node name="Label" type="Label" parent="."]
+[node name="Menu" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label" type="Label" parent="Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.6500001
+anchor_bottom = 1.0
+offset_right = 93.0
+grow_horizontal = 2
 text = "Waiting for players..."
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="QR" type="TextureRect" parent="Menu"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -31,86 +39,29 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -131.5
-offset_top = -131.5
-offset_right = 131.5
-offset_bottom = 131.5
+offset_left = 424.5
+offset_top = 172.5
+offset_right = 687.5
+offset_bottom = 435.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("PlaceholderTexture2D_qxxoh")
 
-[node name="Start" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -70.0
-offset_top = -159.0
-offset_right = 70.0
-offset_bottom = -100.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Start"
-
-[node name="Pot" type="Control" parent="."]
-visible = false
+[node name="Start" type="Button" parent="Menu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = 112.5
+offset_right = 70.0
+offset_bottom = 171.5
 grow_horizontal = 2
 grow_vertical = 2
+text = "Start (1/4)"
 
-[node name="Card" parent="Pot" instance=ExtResource("2_jr8u0")]
+[node name="Player" parent="." instance=ExtResource("2_4lqbe")]
+visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -66.0
-offset_top = -275.0
-offset_right = 66.6
-offset_bottom = -80.0
-grow_horizontal = 1
-grow_vertical = 1
-
-[node name="Card2" parent="Pot" instance=ExtResource("2_jr8u0")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 120.0
-offset_top = -97.0
-offset_right = 252.6
-offset_bottom = 98.0
-
-[node name="Card3" parent="Pot" instance=ExtResource("2_jr8u0")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -66.0
-offset_top = 80.0
-offset_right = 66.6
-offset_bottom = 275.0
-
-[node name="Card4" parent="Pot" instance=ExtResource("2_jr8u0")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -253.0
-offset_top = -97.0
-offset_right = -120.4
-offset_bottom = 98.0

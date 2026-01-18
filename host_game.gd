@@ -18,13 +18,21 @@ func _ready():
 	multiplayer.peer_connected.connect(_on_player_connected)
 	multiplayer.peer_disconnected.connect(_on_player_disconnected)
 	
+	print(multiplayer.get_unique_id())
+	
+	print(multiplayer.get_peers())
+	
+	host_lan()
+	
 	var join_text = "%s:%s" % [Network.ADDRESS, Network.PORT]
-	$Label.text = "Server started. Join with QR code (IP: %s)" % join_text
+	$Menu/Label.text = "Server started. Join with QR code (IP: %s)" % join_text
 	
 	deck.shuffle()
 	
-	$Start.pressed.connect(_on_game_start)
+	$Menu/Start.pressed.connect(_on_game_start)
 
+func host_lan():
+	_on_player_connected(1)
 
 func game_loop():
 	await get_tree().create_timer(4).timeout
@@ -40,13 +48,13 @@ func game_loop():
 		
 		if draw == null:
 			pot[turn] = deck.pop_back()
-			$Pot.get_child(turn).card = pot[turn]
+			#$Pot.get_child(turn).card = pot[turn]
 			Network.draw_card.rpc_id(order[turn], pot[turn])
 		elif draw in range(len(players)):
 			pot[turn] = pot[draw]
 			pot[draw] = null
-			$Pot.get_child(turn).card = pot[turn]
-			$Pot.get_child(draw).card = ""
+			#$Pot.get_child(turn).card = pot[turn]
+			#$Pot.get_child(draw).card = ""
 			Network.draw_card.rpc_id(order[turn], pot[turn])
 		Network.update_pot.rpc(pot)
 		
@@ -79,16 +87,17 @@ func check_win():
 func _on_player_connected(id):
 	var username = await Network.set_username
 	players[id] = {"name": username, "hand": []}
-	$Label.text += "\n%s joined!" % username
+	$Menu/Start.text = "Start (%d/4)" % len(players)
+	print(players)
+	$Menu/Label.text += "\n%s joined!" % username
 	
 	for _i in range(8):
 		players[id].hand += [deck.pop_back()]
 
 
 func _on_game_start():
-	$Start.visible = false
-	$TextureRect.visible = false
-	$Pot.visible = true
+	$Menu.visible = false
+	#$Player.visible = true
 	for id in players:
 		Network.deal_hand.rpc_id(id, players[id].hand)
 	order = players.keys()
@@ -100,9 +109,9 @@ func _on_game_start():
 
 func _on_player_disconnected(id):
 	players.erase(id)
-	$Label.text += "\n%s disconnected." % players[id]["name"]
+	$Menu/Label.text += "\n%s disconnected." % players[id]["name"]
 
-#
+
 #func _generate_qr(text: String):
 	#var qr = preload("res://addons/qrcodegen.gd").new()
 	#var img = qr.make_image(text)
