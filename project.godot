@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="Hotpot"
-run/main_scene="res://main_menu.tscn"
+run/main_scene="uid://cplxxjjkpuul5"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Network="*res://network.gd"
-Cards="*res://cards.gd"
+Network="*res://common/network.gd"
+Cards="*res://common/cards.gd"
 
 [debug]
 

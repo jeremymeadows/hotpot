@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dtaf5jyt5pdui"]
 
 [ext_resource type="Texture2D" uid="uid://cgkhih58unfwy" path="res://assets/card_back.svg" id="1_iw360"]
-[ext_resource type="Script" uid="uid://ct6p1padbhtup" path="res://card.gd" id="2_2j2o4"]
+[ext_resource type="Script" uid="uid://ct6p1padbhtup" path="res://client/card.gd" id="2_2j2o4"]
 [ext_resource type="Shader" uid="uid://cx67idwlr1lwn" path="res://color.gdshader" id="4_e484p"]
 
 [sub_resource type="Animation" id="Animation_q5obu"]
@@ -50,7 +50,6 @@ offset_bottom = 195.0
 pivot_offset = Vector2(66.3, 0)
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("1_iw360")
-texture_disabled = ExtResource("1_iw360")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("2_2j2o4")

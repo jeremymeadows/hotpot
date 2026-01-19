@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cmntqh3kweg1e"]
 
-[ext_resource type="Script" uid="uid://b5bugdw58o8i1" path="res://player_client.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://dtaf5jyt5pdui" path="res://card.tscn" id="2_vbick"]
+[ext_resource type="Script" uid="uid://b5bugdw58o8i1" path="res://client/game.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://dtaf5jyt5pdui" path="res://client/card.tscn" id="2_vbick"]
 
 [node name="Player" type="Control"]
 layout_mode = 3
@@ -24,7 +24,6 @@ offset_top = 20.0
 offset_right = -19.3999
 offset_bottom = 215.0
 grow_horizontal = 0
-grow_vertical = 1
 
 [node name="New" parent="." instance=ExtResource("2_vbick")]
 visible = false
@@ -38,6 +37,8 @@ offset_left = -338.0
 offset_top = -242.5
 offset_right = -205.4
 offset_bottom = -47.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Pot" type="Control" parent="."]
 layout_mode = 1
@@ -52,8 +53,6 @@ offset_left = 1002.86
 offset_top = 14.2857
 offset_right = 1135.46
 offset_bottom = 209.286
-grow_horizontal = 1
-grow_vertical = 1
 
 [node name="Card2" parent="Pot" instance=ExtResource("2_vbick")]
 visible = false
@@ -63,8 +62,6 @@ offset_left = 1164.29
 offset_top = 135.714
 offset_right = 1296.89
 offset_bottom = 330.714
-grow_horizontal = 1
-grow_vertical = 1
 
 [node name="Card3" parent="Pot" instance=ExtResource("2_vbick")]
 visible = false
@@ -74,8 +71,6 @@ offset_left = 998.571
 offset_top = 267.143
 offset_right = 1131.17
 offset_bottom = 462.143
-grow_horizontal = 1
-grow_vertical = 1
 
 [node name="Card4" parent="Pot" instance=ExtResource("2_vbick")]
 visible = false
@@ -85,8 +80,6 @@ offset_left = 824.286
 offset_top = 137.143
 offset_right = 956.885
 offset_bottom = 332.143
-grow_horizontal = 1
-grow_vertical = 1
 
 [node name="Cards" type="HBoxContainer" parent="."]
 layout_mode = 1
