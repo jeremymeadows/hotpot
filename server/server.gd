@@ -29,7 +29,6 @@ func _on_peer_disconnected(id):
 	queue.erase(id)
 
 func _start_match():
-	print('server starting match')
 	lobby_timer.stop()
 	if queue.is_empty():
 		return
@@ -45,15 +44,17 @@ func _start_match():
 	var room_name = "Match_" + str(Time.get_ticks_msec())
 	var match_scene = preload("res://server/manager.gd").new()
 	match_scene.name = room_name
-	
-	# Isolate networking for this room
-	var room_api = SceneMultiplayer.new()
-	room_api.multiplayer_peer = multiplayer.multiplayer_peer
-	
 	get_node("/root/Main/Matches").add_child(match_scene)
-	get_tree().set_multiplayer(room_api, match_scene.get_path())
 	
-	# Tell humans to join this specific path
+	var rpc_paths = preload('res://common/rpcs.gd').new()
+	rpc_paths.name = "RPC"
+	match_scene.add_child(rpc_paths)
+	
+	# isolate networking for this room
+	#var room_api = SceneMultiplayer.new()
+	#room_api.multiplayer_peer = multiplayer.multiplayer_peer
+	#get_tree().set_multiplayer(room_api, match_scene.get_path())
+	
 	for id in players.filter(func(id): return id > 0):
 		print('inviting ', id)
 		Network.setup_client_room.rpc_id(id, room_name, players)

@@ -22,6 +22,8 @@ func _on_card_change(new_card):
 		texture_normal.region.position = Cards.position_of(new_card)
 	elif new_card == "none":
 		texture_normal = Texture.new()
+		$Outline.visible = false
+		mouse_default_cursor_shape = Control.CURSOR_ARROW
 	else:
 		var tex = ImageTexture.create_from_image(Image.load_from_file("res://assets/card_back.svg"))
 		texture_normal = tex
