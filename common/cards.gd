@@ -73,33 +73,25 @@ func position_of(card):
 		return null
 
 
-func check_complete(hand):
-	var cards = {}
-	var score = 0
-	for card in hand:
-		var type = get_type_of(card)
-		if type not in cards:
-			cards[type] = []
-		cards[type] += [card]
+func winning_hand(hand: Array):
+	hand.sort_custom(sort)
+	var sets = 0
 	
-	if len(cards) > 3:
-		return null
-	
-	for type in cards:
-		if len(cards[type]) == 3:
-			if cards[type][0] == cards[type][1] and cards[type][1] == cards[type][2]:
-				score += 3
-			elif cards[type][0] != cards[type][1] and cards[type][1] != cards[type][2] and cards[type][0] != cards[type][2]:
-				score += 1
-			else:
-				return null
-		elif len(cards[type]) == 6:
-			pass
-		elif len(cards[type]) == 9:
-			pass
-		else:
-			return null
-	return score
+	var i = 0
+	while i <= len(hand) - 3:
+		if hand.slice(i, i + 3).all(func(e): return e == hand[i]):
+			sets += 1
+			for __ in range(3):
+				hand.remove_at(i)
+			i = -1
+		elif hand.slice(i, i + 3).all(func(e): return get_type_of(e) == get_type_of(hand[i])):
+			if hand[i] != hand[i + 1] and hand[i] != hand[i + 2] and hand[i + 1] != hand[i + 2]:
+				sets += 1
+				for __ in range(3):
+					hand.remove_at(i)
+				i = -1
+		i += 1
+	return sets == 3
 
 func sort(a, b) -> bool:
 	var cards = card_names()

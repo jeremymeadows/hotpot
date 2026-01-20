@@ -1,6 +1,6 @@
 extends Node
 
-var players = {} # ID -> Data
+var players = []
 
 signal next
 signal next2
@@ -18,11 +18,13 @@ func _ready():
 			$UI/Player1/Cards.get_children()[i].card = cards[i]
 		$UI/Pot.visible = true
 		
-		Network.game_over.connect(func(): pass)
-		Network.updated_pot.connect(func(new_pot):
-			var pot = $UI/Pot.get_children()
-			for i in range(len(pot)):
-				pot[i].card = new_pot[i]
+		Network.game_over.connect(func(winner):
+			$UI/GameOver.text = "%s Wins!" % str(winner)
+			$UI/GameOver.visible = true
+			multiplayer.multiplayer_peer.disconnect_peer(1)
+		)
+		Network.updated_pot.connect(func(player, card):
+			$UI/Pot.get_child(players.find(player)).card = card
 		)
 		
 		Network.new_card.connect(func(card):
@@ -44,16 +46,14 @@ func _ready():
 		for i in len(cards):
 			cards[i].disabled = true
 			cards[i].pressed.connect(func():
-				if i != 0:
-					Network.draw_card.rpc_id(1, i)
-					next.emit()
+				Network.draw_card.rpc_id(1, players[i])
+				next.emit()
 			)
 		cards = $UI/Player1/Cards.get_children()
 		for i in len(cards):
 			cards[i].disabled = true
 			cards[i].pressed.connect(func():
 				Network.play_card.rpc_id(1, i + 1)
-				print('keeping ', $UI/New.card, ' over ', cards[i].card)
 				cards[i].card = $UI/New.card
 				$UI/New.card = "none"
 				next2.emit()
@@ -62,10 +62,7 @@ func _ready():
 		while true:
 			await Network.start_turn
 			print('your turn!')
-			
 			draw_card()
-			#await next
-			print('play')
 			play_card()
 
 

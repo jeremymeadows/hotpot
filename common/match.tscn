@@ -193,48 +193,56 @@ alignment = 1
 [node name="Card1" parent="UI/Player1/Cards" instance=ExtResource("2_8f6xv")]
 custom_minimum_size = Vector2(132.6, 0)
 layout_mode = 2
+disabled = true
 card = "none"
 metadata/_edit_lock_ = true
 
 [node name="Card2" parent="UI/Player1/Cards" instance=ExtResource("2_8f6xv")]
 custom_minimum_size = Vector2(132.6, 0)
 layout_mode = 2
+disabled = true
 card = "none"
 metadata/_edit_lock_ = true
 
 [node name="Card3" parent="UI/Player1/Cards" instance=ExtResource("2_8f6xv")]
 custom_minimum_size = Vector2(132.6, 0)
 layout_mode = 2
+disabled = true
 card = "none"
 metadata/_edit_lock_ = true
 
 [node name="Card4" parent="UI/Player1/Cards" instance=ExtResource("2_8f6xv")]
 custom_minimum_size = Vector2(132.6, 0)
 layout_mode = 2
+disabled = true
 card = "none"
 metadata/_edit_lock_ = true
 
 [node name="Card5" parent="UI/Player1/Cards" instance=ExtResource("2_8f6xv")]
 custom_minimum_size = Vector2(132.6, 0)
 layout_mode = 2
+disabled = true
 card = "none"
 metadata/_edit_lock_ = true
 
 [node name="Card6" parent="UI/Player1/Cards" instance=ExtResource("2_8f6xv")]
 custom_minimum_size = Vector2(132.6, 0)
 layout_mode = 2
+disabled = true
 card = "none"
 metadata/_edit_lock_ = true
 
 [node name="Card7" parent="UI/Player1/Cards" instance=ExtResource("2_8f6xv")]
 custom_minimum_size = Vector2(132.6, 0)
 layout_mode = 2
+disabled = true
 card = "none"
 metadata/_edit_lock_ = true
 
 [node name="Card8" parent="UI/Player1/Cards" instance=ExtResource("2_8f6xv")]
 custom_minimum_size = Vector2(132.6, 0)
 layout_mode = 2
+disabled = true
 card = "none"
 metadata/_edit_lock_ = true
 
@@ -512,6 +520,7 @@ offset_left = 823.0
 offset_top = 159.0
 offset_right = 923.0
 offset_bottom = 306.0
+disabled = true
 
 [node name="New" parent="UI" instance=ExtResource("2_8f6xv")]
 offset_left = 582.0
@@ -519,3 +528,17 @@ offset_top = 231.0
 offset_right = 714.6
 offset_bottom = 426.0
 card = "none"
+
+[node name="GameOver" type="Label" parent="UI"]
+visible = false
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 160
+text = "You Win"
+horizontal_alignment = 1

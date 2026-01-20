@@ -2,14 +2,14 @@ extends Node
 
 var players = {}
 
-func initialize_game(human_ids: Array):
+func initialize_game(ids: Array):
 	# Fill with bots if less than 4
-	var final_roster = human_ids.duplicate()
-	while final_roster.size() < 4:
-		var bot_id = -(final_roster.size() + 100)
-		final_roster.append(bot_id)
+	#var final_roster = human_ids.duplicate()
+	#while final_roster.size() < 4:
+		#var bot_id = -(final_roster.size() + 100)
+		#final_roster.append(bot_id)
 	
-	for id in final_roster:
+	for id in ids:
 		players[id] = { "ready": false, "hand": [], "pot": "none" }
 	
 	print("Room ", name, " initialized with players: ", players.keys())
@@ -60,32 +60,38 @@ func start_game():
 		else:
 			pot[turn] = deck.pop_front()
 			await get_tree().create_timer(2).timeout
-			Network.update_pot.rpc(pot)
+			Network.update_pot.rpc(players.keys()[turn], pot[turn])
 			turn = (turn + 1) % len(players)
 			continue
 		print('player ', turn, ' turn')
 		
-		var c = await Network.drew_card
 		var card = "none"
-		match c:
-			0: card = deck.pop_front()
-			_:
-				card = pot[c]
-				pot[c] = "none"
-				Network.update_pot.rpc(pot)
+		match await Network.drew_card:
+			0:
+				card = deck.pop_front()
+			var loc:
+				card = pot[players.keys().find(loc)]
+				pot[players.keys().find(loc)] = "none"
+				Network.update_pot.rpc(loc, "none")
 		print('player ', turn, ' drew ', card)
 		Network.deal_card.rpc_id(players.keys()[turn], card)
-		#pot[turn] = card
 		
-		c = await Network.played_card
-		#card = pot[turn]
-		match c:
+		if Cards.winning_hand(players[players.keys()[turn]].hand + [card]):
+			print(players.keys()[turn], ' won')
+			Network.game_won.rpc(players.keys()[turn])
+			return
+		
+		match await Network.played_card:
 			0: pot[turn] = card
-			_:
+			var c:
 				pot[turn] = players[players.keys()[turn]].hand[c - 1]
 				players[players.keys()[turn]].hand[c - 1] = card
-		Network.update_pot.rpc(pot)
+		Network.update_pot.rpc(players.keys()[turn], pot[turn])
 		print('player ', turn, ' discarded ', pot[turn])
 		print(players[players.keys()[turn]].hand)
+		
+		if deck.is_empty():
+			deck = Cards.get_deck()
+			deck.shuffle()
 		
 		turn = (turn + 1) % len(players)

@@ -26,6 +26,6 @@ func _ready():
 		multiplayer.multiplayer_peer = peer
 		
 		# Add the Client logic
-		var client = preload("res://client/game.gd").new()
+		#var client = preload("res://client/game.gd").new()
 		#client.name = "NetworkHandler"
-		add_child(client)
+		#add_child(client)
