@@ -5,8 +5,10 @@ func _ready():
 		print('todo: help')
 		get_tree().quit()
 	
+	Network.get_data()
+	
 	if OS.has_feature("dedicated_server") or "--server" in OS.get_cmdline_user_args():
-		print("--- Starting Server ---")
+		print("Server starting on 0.0.0.0:", Network.PORT)
 		var peer = WebSocketMultiplayerPeer.new()
 		peer.create_server(Network.PORT)
 		multiplayer.multiplayer_peer = peer
@@ -15,7 +17,8 @@ func _ready():
 		server.name = "Server"
 		add_child(server)
 	else:
-		print("--- Starting Client ---")
+		var conn = "%s://%s:%d" % [Network.PROTO, Network.ADDRESS, Network.PORT]
+		print("Client connecting to `%s`" % conn)
 		var peer = WebSocketMultiplayerPeer.new()
-		peer.create_client("ws://" + Network.ADDRESS + ":" + str(Network.PORT))
+		peer.create_client(conn)
 		multiplayer.multiplayer_peer = peer

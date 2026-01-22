@@ -11,20 +11,27 @@ config_version=5
 [application]
 
 config/name="Hotpot"
+config/version="0.1"
 run/main_scene="uid://cplxxjjkpuul5"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Network="*res://common/network.gd"
-Cards="*res://common/cards.gd"
+Network="*res://global/network.gd"
+Cards="*res://global/cards.gd"
+DotEnv="*res://global/dotenv.gd"
 
 [debug]
 
 multirun/number_of_windows=2
 multirun/add_custom_args=true
 multirun/window_args=["listen", "join"]
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [rendering]
 

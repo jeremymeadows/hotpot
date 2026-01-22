@@ -77,7 +77,6 @@ func start_game():
 				pot[players.keys().find(loc)] = "none"
 				rpc_room($RPC.update_pot, loc, "none")
 		$RPC.deal_card.rpc_id(players.keys()[turn], card)
-		print(multiplayer.get_peers())
 		
 		if Cards.winning_hand(players[players.keys()[turn]].hand + [card]):
 			print(players.keys()[turn], ' won')

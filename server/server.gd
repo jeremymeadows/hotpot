@@ -46,7 +46,7 @@ func _start_match():
 	match_scene.name = room_name
 	get_node("/root/Main/Matches").add_child(match_scene)
 	
-	var rpc_paths = preload('res://common/rpcs.gd').new()
+	var rpc_paths = preload('res://common/rpc.gd').new()
 	rpc_paths.name = "RPC"
 	match_scene.add_child(rpc_paths)
 	

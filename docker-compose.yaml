@@ -1,0 +1,12 @@
+networks:
+  vnet:
+    external: true
+
+services:
+  server:
+    container_name: hotpot_server
+    image: hotpot-server:latest
+    build: .
+    networks:
+      - vnet
+    restart: always

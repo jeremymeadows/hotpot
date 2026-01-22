@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://cdkdrhhls4ett"]
 
-[ext_resource type="Script" uid="uid://bdwyrbafyde67" path="res://common/match.gd" id="1_ajuwo"]
-[ext_resource type="PackedScene" uid="uid://dtaf5jyt5pdui" path="res://client/card.tscn" id="2_8f6xv"]
-[ext_resource type="Script" uid="uid://c7k60i74e2cu2" path="res://common/rpcs.gd" id="2_kicdp"]
+[ext_resource type="Script" uid="uid://bdwyrbafyde67" path="res://client/match.gd" id="1_7sg6s"]
+[ext_resource type="Script" uid="uid://c7k60i74e2cu2" path="res://common/rpc.gd" id="2_h1q33"]
+[ext_resource type="PackedScene" uid="uid://dtaf5jyt5pdui" path="res://client/card.tscn" id="3_ix7t0"]
 
 [node name="Match" type="Node"]
-script = ExtResource("1_ajuwo")
+script = ExtResource("1_7sg6s")
 
 [node name="RPC" type="Node" parent="."]
-script = ExtResource("2_kicdp")
+script = ExtResource("2_h1q33")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -30,7 +30,7 @@ offset_right = 773.0
 offset_bottom = -90.0
 size_flags_horizontal = 3
 
-[node name="Card1" parent="UI/CardFan" instance=ExtResource("2_8f6xv")]
+[node name="Card1" parent="UI/CardFan" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(50, 75)
 layout_mode = 0
 offset_left = 133.52777
@@ -40,7 +40,7 @@ offset_bottom = -201.53766
 rotation = -1.2217305
 pivot_offset = Vector2(214, 210)
 
-[node name="Card2" parent="UI/CardFan" instance=ExtResource("2_8f6xv")]
+[node name="Card2" parent="UI/CardFan" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(50, 75)
 layout_mode = 0
 offset_left = 189.52777
@@ -50,7 +50,7 @@ offset_bottom = -83.53766
 rotation = -0.87266463
 pivot_offset = Vector2(160, 210)
 
-[node name="Card3" parent="UI/CardFan" instance=ExtResource("2_8f6xv")]
+[node name="Card3" parent="UI/CardFan" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(50, 75)
 layout_mode = 0
 offset_left = 189.52777
@@ -60,7 +60,7 @@ offset_bottom = 10.462341
 rotation = -0.5235988
 pivot_offset = Vector2(106, 210)
 
-[node name="Card4" parent="UI/CardFan" instance=ExtResource("2_8f6xv")]
+[node name="Card4" parent="UI/CardFan" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(50, 75)
 layout_mode = 0
 offset_left = 178.52777
@@ -70,7 +70,7 @@ offset_bottom = 56.46234
 rotation = -0.17453292
 pivot_offset = Vector2(52, 210)
 
-[node name="Card5" parent="UI/CardFan" instance=ExtResource("2_8f6xv")]
+[node name="Card5" parent="UI/CardFan" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(50, 75)
 layout_mode = 0
 offset_left = 134.52777
@@ -80,7 +80,7 @@ offset_bottom = 56.46234
 rotation = 0.17453292
 pivot_offset = Vector2(-2, 210)
 
-[node name="Card6" parent="UI/CardFan" instance=ExtResource("2_8f6xv")]
+[node name="Card6" parent="UI/CardFan" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(50, 75)
 layout_mode = 0
 offset_left = 121.52777
@@ -90,7 +90,7 @@ offset_bottom = 11.462341
 rotation = 0.5235988
 pivot_offset = Vector2(-56, 210)
 
-[node name="Card7" parent="UI/CardFan" instance=ExtResource("2_8f6xv")]
+[node name="Card7" parent="UI/CardFan" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(50, 75)
 layout_mode = 0
 offset_left = 121.52777
@@ -100,7 +100,7 @@ offset_bottom = -82.53766
 rotation = 0.87266463
 pivot_offset = Vector2(-110, 210)
 
-[node name="Card8" parent="UI/CardFan" instance=ExtResource("2_8f6xv")]
+[node name="Card8" parent="UI/CardFan" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(50, 75)
 layout_mode = 0
 offset_left = 179.52777
@@ -122,42 +122,42 @@ grow_horizontal = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Card1" parent="UI/Cards2" instance=ExtResource("2_8f6xv")]
+[node name="Card1" parent="UI/Cards2" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(50, 75)
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Card2" parent="UI/Cards2" instance=ExtResource("2_8f6xv")]
+[node name="Card2" parent="UI/Cards2" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(50, 75)
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Card3" parent="UI/Cards2" instance=ExtResource("2_8f6xv")]
+[node name="Card3" parent="UI/Cards2" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(50, 75)
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Card4" parent="UI/Cards2" instance=ExtResource("2_8f6xv")]
+[node name="Card4" parent="UI/Cards2" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(50, 75)
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Card5" parent="UI/Cards2" instance=ExtResource("2_8f6xv")]
+[node name="Card5" parent="UI/Cards2" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(50, 75)
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Card6" parent="UI/Cards2" instance=ExtResource("2_8f6xv")]
+[node name="Card6" parent="UI/Cards2" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(50, 75)
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Card7" parent="UI/Cards2" instance=ExtResource("2_8f6xv")]
+[node name="Card7" parent="UI/Cards2" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(50, 75)
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Card8" parent="UI/Cards2" instance=ExtResource("2_8f6xv")]
+[node name="Card8" parent="UI/Cards2" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(50, 75)
 layout_mode = 2
 metadata/_edit_lock_ = true
@@ -194,56 +194,56 @@ grow_vertical = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Card1" parent="UI/Player1/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card1" parent="UI/Player1/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(132.6, 0)
 layout_mode = 2
 disabled = true
 card = "none"
 metadata/_edit_lock_ = true
 
-[node name="Card2" parent="UI/Player1/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card2" parent="UI/Player1/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(132.6, 0)
 layout_mode = 2
 disabled = true
 card = "none"
 metadata/_edit_lock_ = true
 
-[node name="Card3" parent="UI/Player1/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card3" parent="UI/Player1/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(132.6, 0)
 layout_mode = 2
 disabled = true
 card = "none"
 metadata/_edit_lock_ = true
 
-[node name="Card4" parent="UI/Player1/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card4" parent="UI/Player1/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(132.6, 0)
 layout_mode = 2
 disabled = true
 card = "none"
 metadata/_edit_lock_ = true
 
-[node name="Card5" parent="UI/Player1/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card5" parent="UI/Player1/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(132.6, 0)
 layout_mode = 2
 disabled = true
 card = "none"
 metadata/_edit_lock_ = true
 
-[node name="Card6" parent="UI/Player1/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card6" parent="UI/Player1/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(132.6, 0)
 layout_mode = 2
 disabled = true
 card = "none"
 metadata/_edit_lock_ = true
 
-[node name="Card7" parent="UI/Player1/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card7" parent="UI/Player1/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(132.6, 0)
 layout_mode = 2
 disabled = true
 card = "none"
 metadata/_edit_lock_ = true
 
-[node name="Card8" parent="UI/Player1/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card8" parent="UI/Player1/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(132.6, 0)
 layout_mode = 2
 disabled = true
@@ -280,49 +280,49 @@ rotation = -1.5707964
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Card1" parent="UI/Player2/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card1" parent="UI/Player2/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card2" parent="UI/Player2/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card2" parent="UI/Player2/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card3" parent="UI/Player2/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card3" parent="UI/Player2/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card4" parent="UI/Player2/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card4" parent="UI/Player2/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card5" parent="UI/Player2/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card5" parent="UI/Player2/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card6" parent="UI/Player2/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card6" parent="UI/Player2/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card7" parent="UI/Player2/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card7" parent="UI/Player2/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card8" parent="UI/Player2/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card8" parent="UI/Player2/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
@@ -354,49 +354,49 @@ offset_bottom = 88.0
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Card1" parent="UI/Player3/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card1" parent="UI/Player3/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card2" parent="UI/Player3/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card2" parent="UI/Player3/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card3" parent="UI/Player3/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card3" parent="UI/Player3/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card4" parent="UI/Player3/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card4" parent="UI/Player3/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card5" parent="UI/Player3/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card5" parent="UI/Player3/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card6" parent="UI/Player3/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card6" parent="UI/Player3/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card7" parent="UI/Player3/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card7" parent="UI/Player3/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card8" parent="UI/Player3/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card8" parent="UI/Player3/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
@@ -428,49 +428,49 @@ rotation = 1.5707964
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Card1" parent="UI/Player4/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card1" parent="UI/Player4/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card2" parent="UI/Player4/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card2" parent="UI/Player4/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card3" parent="UI/Player4/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card3" parent="UI/Player4/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card4" parent="UI/Player4/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card4" parent="UI/Player4/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card5" parent="UI/Player4/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card5" parent="UI/Player4/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card6" parent="UI/Player4/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card6" parent="UI/Player4/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card7" parent="UI/Player4/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card7" parent="UI/Player4/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Card8" parent="UI/Player4/Cards" instance=ExtResource("2_8f6xv")]
+[node name="Card8" parent="UI/Player4/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
 layout_mode = 2
 disabled = true
@@ -482,7 +482,7 @@ anchors_preset = 0
 offset_left = -76.0
 offset_right = -76.0
 
-[node name="Card1" parent="UI/Pot" instance=ExtResource("2_8f6xv")]
+[node name="Card1" parent="UI/Pot" instance=ExtResource("3_ix7t0")]
 layout_mode = 0
 offset_left = 377.0
 offset_top = 247.0
@@ -492,7 +492,7 @@ disabled = true
 card = "none"
 metadata/_edit_lock_ = true
 
-[node name="Card2" parent="UI/Pot" instance=ExtResource("2_8f6xv")]
+[node name="Card2" parent="UI/Pot" instance=ExtResource("3_ix7t0")]
 layout_mode = 0
 offset_left = 498.0
 offset_top = 163.0
@@ -501,7 +501,7 @@ offset_bottom = 310.0
 card = "none"
 metadata/_edit_lock_ = true
 
-[node name="Card3" parent="UI/Pot" instance=ExtResource("2_8f6xv")]
+[node name="Card3" parent="UI/Pot" instance=ExtResource("3_ix7t0")]
 layout_mode = 0
 offset_left = 375.0
 offset_top = 82.0
@@ -510,7 +510,7 @@ offset_bottom = 229.0
 card = "none"
 metadata/_edit_lock_ = true
 
-[node name="Card4" parent="UI/Pot" instance=ExtResource("2_8f6xv")]
+[node name="Card4" parent="UI/Pot" instance=ExtResource("3_ix7t0")]
 layout_mode = 0
 offset_left = 250.0
 offset_top = 166.0
@@ -519,14 +519,14 @@ offset_bottom = 313.0
 card = "none"
 metadata/_edit_lock_ = true
 
-[node name="Draw" parent="UI" instance=ExtResource("2_8f6xv")]
+[node name="Draw" parent="UI" instance=ExtResource("3_ix7t0")]
 offset_left = 823.0
 offset_top = 159.0
 offset_right = 923.0
 offset_bottom = 306.0
 disabled = true
 
-[node name="New" parent="UI" instance=ExtResource("2_8f6xv")]
+[node name="New" parent="UI" instance=ExtResource("3_ix7t0")]
 offset_left = 582.0
 offset_top = 231.0
 offset_right = 714.6

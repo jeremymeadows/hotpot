@@ -30,35 +30,7 @@ func _on_card_change(new_card):
 	$AnimationPlayer.play_backwards("flip")
 
 
-#func add_margin(size: int, target: Texture) -> void:
-	##var target = texture_normal
-	#
-	#if not target or not target.texture:
-		#return
-#
-	#var original_texture: Texture2D = target.texture
-	#var image := original_texture.get_image()
-	#
-	## Calculate new dimensions
-	#var new_width := image.get_width() + (2 * size)
-	#var new_height := image.get_height() + (2 * size)
-	#
-	## Create new image with transparency
-	#var new_image := Image.create(new_width, new_height, false, Image.FORMAT_RGBA8)
-	#new_image.fill(Color(0, 0, 0, 0))  # Fill with transparent color
-#
-	## Copy original image to new position with offset
-	#new_image.blit_rect(image, Rect2i(0, 0, image.get_width(), image.get_height()), Vector2i(size, size))
-#
-	## Create and assign new texture
-	#var new_texture := ImageTexture.create_from_image(new_image)
-	#print(target.texture)
-	#target.texture = new_texture
-	#print(target.texture)
-
-
 func _on_mouse_entered() -> void:
-	#(material as ShaderMaterial).set_shader_parameter("line_color", Color(1, 1, 1, 1))
 	if not disabled and card != "none":
 		$Outline.visible = true
 		mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
@@ -66,5 +38,4 @@ func _on_mouse_entered() -> void:
 		mouse_default_cursor_shape = Control.CURSOR_ARROW
 
 func _on_mouse_exited() -> void:
-	#(material as ShaderMaterial).set_shader_parameter("line_color", Color(0, 0, 0, 0))
 	$Outline.visible = false
