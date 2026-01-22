@@ -8,14 +8,8 @@ func rpc_room(method: Callable, ...args):
 
 
 func initialize_game(ids: Array):
-	# Fill with bots if less than 4
-	#var final_roster = human_ids.duplicate()
-	#while final_roster.size() < 4:
-		#var bot_id = -(final_roster.size() + 100)
-		#final_roster.append(bot_id)
-	
 	for id in ids:
-		players[id] = { "name": "player %d" % id, "ready": false, "hand": [], "pot": "none" }
+		players[id] = { "ready": false, "hand": [], "pot": "none" }
 	
 	print("Room ", name, " initialized with players: ", players.keys())
 
@@ -47,7 +41,6 @@ func start_game():
 		#print('lobby timed out')
 		#get_tree().quit()
 	
-	print('dealing')
 	for id in players:
 		players[id].hand = deck.slice(0, 8)
 		if id > 0:
@@ -58,7 +51,6 @@ func start_game():
 	var turn = -1
 	while true:
 		turn = (turn + 1) % len(players)
-		print('player ', players.keys()[turn], ' turn')
 		
 		if players.keys()[turn] > 0:
 			$RPC.next_turn.rpc_id(players.keys()[turn])

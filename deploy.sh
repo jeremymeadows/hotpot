@@ -5,10 +5,10 @@ REMOTE_HOST=vps.jeremymeadows.dev
 IDENTITY_KEY=~/.ssh/vps
 APP_ROOT=/srv/sites/hotpot
 
-name=hotpot_server
+name=hotpot-server
 version=0.0.1
 
-docker build -t $name:$version --network host .
+docker build . -t $name:$version
 docker image tag $name:$version $name:latest
 mkdir docker
 docker image save $name:$version -o docker/${name}-$version.tar

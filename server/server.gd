@@ -3,17 +3,26 @@ extends Node
 const MAX_PLAYERS = 4
 const WAIT_TIME = 5.0
 
+const BOT_NAMES = [ "Ashura", "Auni", "Badruu", "Einar", "Elouisa", "Hekla", "Hodari", "Jel", "Jina", "Kenyatta", "Najuma", "Reth", "Tish", "Ulfe" ]
+
 var queue: Array[int] = []
-var lobby_timer: Timer
+var lobby_timer: Timer = Timer.new()
+var usernames: Dictionary[int, String] = {}
 
 var active_games: Dictionary[String, Thread] = {}
 
+
 func _ready():
 	multiplayer.peer_connected.connect(_on_peer_connected)
-	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
+	multiplayer.peer_disconnected.connect(func(id):
+		usernames.erase(id)
+		queue.erase(id)
+	)
 	
-	lobby_timer = Timer.new()
-	lobby_timer.one_shot = true
+	Network.new_user.connect(func(id, uname):
+		usernames[id] = uname
+	)
+	
 	lobby_timer.timeout.connect(_start_match)
 	add_child(lobby_timer)
 
@@ -23,13 +32,12 @@ func _on_peer_connected(id):
 	if queue.size() == 1:
 		lobby_timer.start(WAIT_TIME)
 	if queue.size() >= MAX_PLAYERS:
+		lobby_timer.stop()
 		_start_match()
-
-func _on_peer_disconnected(id):
-	queue.erase(id)
+		if len(queue) > 0:
+			lobby_timer.start()
 
 func _start_match():
-	lobby_timer.stop()
 	if queue.is_empty():
 		return
 	
@@ -50,17 +58,17 @@ func _start_match():
 	rpc_paths.name = "RPC"
 	match_scene.add_child(rpc_paths)
 	
-	# isolate networking for this room
-	#var room_api = SceneMultiplayer.new()
-	#room_api.multiplayer_peer = multiplayer.multiplayer_peer
-	#get_tree().set_multiplayer(room_api, match_scene.get_path())
-	
+	var match_names = {}
+	var bots = BOT_NAMES.duplicate()
+	bots.shuffle()
+	for id in players:
+		match_names[id] = usernames[id] if id > 0 else bots.pop_front()
+		#match_names[id] = "Player%d" % id if id > 0 else bots.pop_front()
 	for id in players.filter(func(id): return id > 0):
-		print('inviting ', id)
-		Network.setup_client_room.rpc_id(id, room_name, players)
+		Network.setup_client_room.rpc_id(id, room_name, players, match_names)
 	
 	match_scene.initialize_game(players)
-	#match_scene.start_game()
+	
 	var game_thread = Thread.new()
 	game_thread.start(match_scene.start_game)
 	active_games[room_name] = game_thread

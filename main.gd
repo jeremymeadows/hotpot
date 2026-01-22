@@ -10,15 +10,11 @@ func _ready():
 	if OS.has_feature("dedicated_server") or "--server" in OS.get_cmdline_user_args():
 		print("Server starting on 0.0.0.0:", Network.PORT)
 		var peer = WebSocketMultiplayerPeer.new()
-		peer.create_server(Network.PORT)
+		peer.create_server(8910)
 		multiplayer.multiplayer_peer = peer
 		
 		var server = preload("res://server/server.gd").new()
 		server.name = "Server"
 		add_child(server)
 	else:
-		var conn = "%s://%s:%d" % [Network.PROTO, Network.ADDRESS, Network.PORT]
-		print("Client connecting to `%s`" % conn)
-		var peer = WebSocketMultiplayerPeer.new()
-		peer.create_client(conn)
-		multiplayer.multiplayer_peer = peer
+		get_tree().call_deferred("change_scene_to_file", "res://client/menu.tscn")

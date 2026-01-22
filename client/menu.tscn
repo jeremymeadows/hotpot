@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmuivjq1cujv7"]
+[gd_scene load_steps=4 format=3 uid="uid://cmuivjq1cujv7"]
 
 [ext_resource type="Script" uid="uid://bguqd8ydv5y77" path="res://client/menu.gd" id="1_fyq5s"]
+[ext_resource type="Theme" uid="uid://c8e6glxqn6suj" path="res://assets/theme.tres" id="2_etotc"]
 
-[node name="MainMenu" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_putif"]
+bg_color = Color(0.78431374, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,36 +19,29 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fyq5s")
 
-[node name="Host" type="Button" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 240.0
-offset_top = -29.5
-offset_right = -196.0
-offset_bottom = 29.5
-grow_vertical = 2
-text = "Host
-"
-
-[node name="Join" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 218.0
-offset_top = -29.5
-offset_right = -218.0
-offset_bottom = 29.5
-grow_horizontal = 0
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
-text = "Join"
+color = Color(0.92941177, 0.7411765, 0.44705883, 1)
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="Hotpot" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 27.0
+offset_bottom = 164.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.18359044, 0.18359044, 0.18359044, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/font_size = 100
+text = "Hotpot"
+horizontal_alignment = 1
+
+[node name="Username" type="TextEdit" parent="."]
 clip_contents = false
 custom_minimum_size = Vector2(0, 38)
 layout_mode = 1
@@ -48,13 +49,143 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 313.0
-offset_top = -91.0
-offset_right = -291.0
-offset_bottom = -53.0
+offset_left = 312.0
+offset_top = -103.0
+offset_right = -292.0
+offset_bottom = -65.0
 grow_horizontal = 2
 grow_vertical = 2
 placeholder_text = "Username"
+caret_blink = true
+
+[node name="Start" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 265.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuickPlay" type="Button" parent="Start"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 440.0
+offset_top = -116.0
+offset_right = 4.0
+offset_bottom = 18.0
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+text = "Quick Play
+"
+
+[node name="Host" type="Button" parent="Start"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 596.0
+offset_top = -116.0
+offset_right = -416.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+disabled = true
+text = "Host
+"
+
+[node name="Join" type="Button" parent="Start"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 596.0
+offset_top = -41.0
+offset_right = -416.0
+offset_bottom = 18.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+disabled = true
+text = "Join"
+
+[node name="TODO" type="Label" parent="Start"]
+layout_mode = 0
+offset_left = 644.0
+offset_top = 95.0
+offset_right = 745.0
+offset_bottom = 144.0
+rotation = 0.6527531
+theme_override_colors/font_color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+theme_override_font_sizes/font_size = 35
+text = "TODO"
+
+[node name="Rules" type="Button" parent="Start"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.896
+anchor_right = 1.0
+anchor_bottom = 0.901
+offset_left = 440.0
+offset_top = -106.97049
+offset_right = -416.0
+offset_bottom = -54.083008
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+text = "Rules"
+
+[node name="Waiting" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_etotc")
+
+[node name="Cancel" type="Button" parent="Waiting"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.45600003
+anchor_right = 1.0
+anchor_bottom = 0.901
+offset_left = 440.0
+offset_top = 201.512
+offset_right = -416.0
+offset_bottom = -27.848022
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_etotc")
+text = "Cancel"
+
+[node name="Label" type="Label" parent="Waiting"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -5.0
+offset_right = 160.0
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_etotc")
+theme_override_font_sizes/font_size = 40
+text = "Looking for players..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 visible = false
@@ -71,28 +202,74 @@ grow_horizontal = 0
 alignment = 2
 
 [node name="TextEdit2" type="TextEdit" parent="VBoxContainer"]
-visible = false
 custom_minimum_size = Vector2(0, 38)
 layout_mode = 2
 text = "127.0.0.1:9000"
 placeholder_text = "Address"
 metadata/_edit_lock_ = true
 
-[node name="Rules" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
+[node name="Rules" type="Panel" parent="."]
+visible = false
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 504.0
-offset_top = -134.0
-offset_right = -508.0
-offset_bottom = -75.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -24.0
 grow_horizontal = 2
-grow_vertical = 0
-text = "Rules"
+grow_vertical = 2
+theme = ExtResource("2_etotc")
 
-[connection signal="pressed" from="Host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="Join" to="." method="_on_join_pressed"]
-[connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]
+[node name="MarginContainer" type="MarginContainer" parent="Rules"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_etotc")
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Rules/MarginContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[b]How To Play[/b]
+
+Hotpot is a 4-player Tabletop Card Game. The Card Deck consists of 96 Cards, each player starts with 8 Cards on their hand.
+
+The objective is to create three sets of three cards each. Sets can be made with either a [b]Three-of-a-Kind[/b] Set (3 identical cards of the same ingredient) or a [b]Category Set[/b] (3 cards of the same color category but with unique ingredients).
+
+In the center section of the hotpot table, you’ll see the draw and discard piles - the cards here are available for anyone to draw from during their turn.
+
+Turns are played in a counter-clockwise order starting with the player first on the table. On the beginning of their turn the player must draw a card: either from the draw pile (blind draw), or the topmost of any of the other players discard piles. The player may not choose a card from their own discard pile. The player must end their turn with 8 cards, and therefore must discard one card facing up on top of their discard pile. Then the next player’s turn begins.
+
+When a player holds three sets on their hand, they have won the game."
+
+[node name="Close" type="Button" parent="Rules"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 50.0
+grow_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_putif")
+text = "X"
+
+[connection signal="pressed" from="Start/QuickPlay" to="." method="_on_quick_play_pressed"]
+[connection signal="pressed" from="Start/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Start/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="Start/Rules" to="." method="_on_rules_pressed"]
+[connection signal="pressed" from="Waiting/Cancel" to="." method="_on_cancel_pressed"]
 [connection signal="text_changed" from="VBoxContainer/TextEdit2" to="." method="_on_text_edit_text_changed"]
+[connection signal="pressed" from="Rules/Close" to="." method="_on_close_pressed"]

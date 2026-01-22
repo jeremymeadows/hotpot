@@ -3,3 +3,8 @@
 /android/
 
 build/
+docker/
+
+.env
+.env.*
+!.env.example
