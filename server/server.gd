@@ -1,7 +1,7 @@
 extends Node
 
 const MAX_PLAYERS = 4
-const WAIT_TIME = 5.0
+const WAIT_TIME = 10
 
 const BOT_NAMES = [ "Ashura", "Auni", "Badruu", "Einar", "Elouisa", "Hekla", "Hodari", "Jel", "Jina", "Kenyatta", "Najuma", "Reth", "Tish", "Ulfe" ]
 
@@ -63,7 +63,6 @@ func _start_match():
 	bots.shuffle()
 	for id in players:
 		match_names[id] = usernames[id] if id > 0 else bots.pop_front()
-		#match_names[id] = "Player%d" % id if id > 0 else bots.pop_front()
 	for id in players.filter(func(id): return id > 0):
 		Network.setup_client_room.rpc_id(id, room_name, players, match_names)
 	

@@ -5,8 +5,6 @@ func _ready():
 		print('todo: help')
 		get_tree().quit()
 	
-	Network.get_data()
-	
 	if OS.has_feature("dedicated_server") or "--server" in OS.get_cmdline_user_args():
 		print("Server starting on 0.0.0.0:", Network.PORT)
 		var peer = WebSocketMultiplayerPeer.new()

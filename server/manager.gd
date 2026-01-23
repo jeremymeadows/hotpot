@@ -18,28 +18,7 @@ func start_game():
 	deck.shuffle()
 	var pot = ["none", "none", "none", "none"]
 	
-	#for id in players:
-		#if id > 0:
-			#players[id].ready = false
-	#print('looking for readies')
-	
-	#$RPC.is_ready.connect(func (i): 
-		#players_ready[i] = true
-		#print('player ', i, ' ready')
-	#)
-	#
-	#var timer = get_tree().create_timer(10)
-	#var all_ready = true
-	
-	#while timer.time_left > 0:
-		#print('trying for ', timer.time_left, ' seocnds')
-		#$RPC.ready.rpc(1)
-		#await get_tree().create_timer(1).timeout
-		#all_ready = players_ready.values().all(func (e): return e)
 	await get_tree().create_timer(2).timeout
-	#if not players.values().map(func (e): return e.ready).all(func (e): return e):
-		#print('lobby timed out')
-		#get_tree().quit()
 	
 	for id in players:
 		players[id].hand = deck.slice(0, 8)
@@ -47,6 +26,7 @@ func start_game():
 			$RPC.deal_hand.rpc_id(id, players[id].hand)
 		deck = deck.slice(8)
 	print(players)
+	
 	
 	var turn = -1
 	while true:

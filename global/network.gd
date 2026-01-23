@@ -1,26 +1,10 @@
 extends Node
 
-static var ADDRESS = "hotpot.jeremymeadows.dev"
-static var PORT = 8000
-static var PROTO = "wss"
-
-#static var ADDRESS = "hotpot-ws.localhost"
-#static var PORT = 443
-#static var PROTO = "wss"
-
-#static var ADDRESS = "localhost"
-#static var PORT = 8910
-#static var PROTO = "ws"
+static var PORT = 8910
+static var SOCKET = "wss://hotpot.jeremymeadows.dev:8000"
+#static var SOCKET = "ws://localhost:8910"
 
 signal new_user(id: int, uname: String)
-
-
-func get_data() -> void:
-	#DotEnv.load_env(".env")
-	#ADDRESS = OS.get_environment("ADDRESS")
-	#PORT = int(OS.get_environment("PORT"))
-	#PROTO = OS.get_environment("PROTO")
-	pass
 
 
 @rpc("authority", "call_remote", "reliable")

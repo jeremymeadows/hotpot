@@ -60,10 +60,10 @@ caret_blink = true
 
 [node name="Start" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchor_top = 0.409
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 265.0
+offset_top = -0.03201294
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -151,6 +151,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_etotc")
 
+[node name="Timer" type="Timer" parent="Waiting"]
+
 [node name="Cancel" type="Button" parent="Waiting"]
 layout_mode = 1
 anchors_preset = -1
@@ -186,27 +188,6 @@ text = "Looking for players..."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-visible = false
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -489.0
-offset_top = 115.0
-offset_right = -86.0
-offset_bottom = 273.0
-grow_horizontal = 0
-alignment = 2
-
-[node name="TextEdit2" type="TextEdit" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 38)
-layout_mode = 2
-text = "127.0.0.1:9000"
-placeholder_text = "Address"
-metadata/_edit_lock_ = true
 
 [node name="Rules" type="Panel" parent="."]
 visible = false
@@ -271,5 +252,4 @@ text = "X"
 [connection signal="pressed" from="Start/Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="Start/Rules" to="." method="_on_rules_pressed"]
 [connection signal="pressed" from="Waiting/Cancel" to="." method="_on_cancel_pressed"]
-[connection signal="text_changed" from="VBoxContainer/TextEdit2" to="." method="_on_text_edit_text_changed"]
 [connection signal="pressed" from="Rules/Close" to="." method="_on_close_pressed"]

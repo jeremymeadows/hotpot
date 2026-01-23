@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cgkhih58unfwy" path="res://assets/card_back.svg" id="1_iw360"]
 [ext_resource type="Script" uid="uid://ct6p1padbhtup" path="res://client/card.gd" id="2_2j2o4"]
-[ext_resource type="Shader" uid="uid://cx67idwlr1lwn" path="res://color.gdshader" id="4_e484p"]
+[ext_resource type="Shader" uid="uid://cx67idwlr1lwn" path="res://assets/color.gdshader" id="3_xvaki"]
 
 [sub_resource type="Animation" id="Animation_q5obu"]
 length = 0.001
@@ -41,8 +41,8 @@ _data = {
 &"flip": SubResource("Animation_rjlel")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fpac0"]
-shader = ExtResource("4_e484p")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8p6pw"]
+shader = ExtResource("3_xvaki")
 
 [node name="Card" type="TextureButton"]
 offset_right = 132.6
@@ -63,6 +63,7 @@ libraries = {
 visible = false
 show_behind_parent = true
 clip_children = 1
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -76,7 +77,7 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="Mask" type="TextureRect" parent="Outline"]
-material = SubResource("ShaderMaterial_fpac0")
+material = SubResource("ShaderMaterial_8p6pw")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

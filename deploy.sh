@@ -14,7 +14,6 @@ mkdir docker
 docker image save $name:$version -o docker/${name}-$version.tar
 
 scp -i $IDENTITY_KEY build/web/* docker-compose.yaml $USER@$REMOTE_HOST:$APP_ROOT
-scp -i $IDENTITY_KEY .env.prod $USER@$REMOTE_HOST:$APP_ROOT/.env
 ssh -i $IDENTITY_KEY $USER@$REMOTE_HOST "docker image load" < docker/${name}-$version.tar
 ssh -i $IDENTITY_KEY $USER@$REMOTE_HOST << END
 cd $APP_ROOT
