@@ -44,7 +44,7 @@ build-appimage: build-linux
     [Desktop Entry]
     Type=Application
     Name=Hotpot
-    Exec={{name}}-linux-x86_64
+    Exec=AppRun
     Icon={{name}}
     Categories=Game;
     EOF

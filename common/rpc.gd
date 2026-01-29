@@ -10,7 +10,7 @@ signal new_card(card: String)
 signal played_card(card: int)
 
 signal updated_pot(player: int, card: String)
-signal game_over(winner: int)
+signal game_over(winner: int, all_cars: Array)
 
 
 @rpc("any_peer", "call_remote", "reliable")
@@ -44,5 +44,5 @@ func update_pot(player, pot):
 	updated_pot.emit(player, pot)
 
 @rpc("authority", "call_remote", "reliable")
-func game_won(player):
-	game_over.emit(player)
+func game_won(player, cards):
+	game_over.emit(player, cards)

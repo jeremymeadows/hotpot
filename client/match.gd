@@ -22,10 +22,16 @@ func _ready():
 		$UI/Pot.get_child(players.keys().find(player)).card = card
 	)
 	
-	$RPC.game_over.connect(func(winner):
+	$RPC.game_over.connect(func(winner, hands):
 		$UI/GameOver.text = "You Win!" if winner == multiplayer.get_unique_id() else "%s Wins!" % players[winner]
 		$UI/GameOver.visible = true
-		multiplayer.multiplayer_peer.disconnect_peer(1)
+		
+		for i in range(1, 4):
+			var player = $UI.get_child(i + 2).get_node("MarginContainer/Cards")
+			var hand = hands[players.keys()[i]].hand
+			for j in range(8):
+				player.get_child(j).card = hand[j]
+		
 		discarded.emit()
 	)
 	

@@ -3,7 +3,6 @@
 The Hotpot mini-game from Palia.
 
 TODO:
-- reveal all hands after game end
 - smarter bots
 - turn timers
 - host/join lobbies to allow longer join time than quickplay

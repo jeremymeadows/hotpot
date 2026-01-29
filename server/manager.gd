@@ -52,7 +52,7 @@ func start_game():
 		
 		if Cards.winning_hand(players[players.keys()[turn]].hand + [card]):
 			print(players.keys()[turn], ' won')
-			rpc_room($RPC.game_won, players.keys()[turn])
+			rpc_room($RPC.game_won, players.keys()[turn], players)
 			return
 		
 		match await $RPC.played_card:
