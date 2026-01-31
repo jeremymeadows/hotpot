@@ -2,23 +2,13 @@ extends Node
 
 enum State { LOADING, WAITING, DRAWING, DISCARDING }
 
-static func next_state(state: State) -> State:
-	match state:
-		State.LOADING: return State.WAITING
-		State.WAITING: return State.DRAWING
-		State.DRAWING: return State.DISCARDING
-		State.DISCARDING: return State.WAITING
-		_: return State.LOADING
-
 var current_state = State.LOADING:
 	set(new_state):
 		current_state = new_state
-		state_turn()
+		play_turn()
 
 var players = {}
 
-#signal drew
-#signal discarded
 
 func _ready():
 	$RPC.dealt_hand.connect(func(hand):
@@ -30,10 +20,8 @@ func _ready():
 	$RPC.new_card.connect(func(card):
 		$UI/New.card = card
 		current_state = State.DISCARDING
-		#drew.emit()
 	)
 	
-	#$RPC.start_turn.connect(turn)
 	$RPC.start_turn.connect(func(): current_state = State.DRAWING)
 	
 	$RPC.updated_pot.connect(func(player, card):
@@ -51,7 +39,6 @@ func _ready():
 				player.get_child(j).card = hand[j]
 		
 		current_state = State.WAITING
-		#discarded.emit()
 	)
 	
 	
@@ -63,7 +50,6 @@ func _ready():
 		$RPC.play_card.rpc_id(1, 0)
 		$UI/New.card = "none"
 		current_state = State.WAITING
-		#discarded.emit()
 	)
 	
 	var cards = $UI/Player1/MarginContainer/Cards.get_children()
@@ -74,7 +60,6 @@ func _ready():
 			cards[i].card = $UI/New.card
 			$UI/New.card = "none"
 			current_state = State.WAITING
-			#discarded.emit()
 		)
 	cards = $UI/Pot.get_children()
 	for i in len(cards):
@@ -82,14 +67,16 @@ func _ready():
 		cards[i].pressed.connect(func():
 			$RPC.draw_card.rpc_id(1, players.keys()[i])
 			current_state = State.DISCARDING
-			#drew.emit()
 		)
 	
 	$UI/Status/Timer.timeout.connect(func():
 		match current_state:
 			State.DRAWING:
 				$RPC.draw_card.rpc_id(1, 0)
-				$UI/Status/Timer/Timer.start(1)
+				await $RPC.new_card
+				$RPC.play_card.rpc_id(1, 0)
+				$UI/New.card = "none"
+				current_state = State.WAITING
 			State.DISCARDING:
 				$RPC.play_card.rpc_id(1, 0)
 				$UI/New.card = "none"
@@ -97,60 +84,42 @@ func _ready():
 			_: pass
 	)
 
-func turn():
-	$UI/Status/Timer.start()
-	
-	$UI/Status.text = "Your turn: draw a card"
-	$UI/Status.visible = true
-	await draw_card()
-	$UI/Status.text = "Your turn: discard a card"
-	await play_card()
-	$UI/Status.visible = false
 
-func state_turn():
+func play_turn():
 	match current_state:
-		State.LOADING: pass
-		State.WAITING:
+		State.LOADING, State.WAITING:
 			$UI/Status.visible = false
-			$UI/New.disabled = true
-			for card in $UI/Player1/MarginContainer/Cards.get_children():
-				card.disabled = true
+			disable_interactions()
 		State.DRAWING:
 			$UI/Status/Timer.start()
 			$UI/Status.text = "Your turn: draw a card"
 			$UI/Status.visible = true
-			
-			$UI/Draw.disabled = false
-			for card in $UI/Pot.get_children().slice(1):
-				if card.card != "none":
-					card.disabled = false
+			enable_draw_interactions()
 		State.DISCARDING:
 			$UI/Status.text = "Your turn: discard a card"
-			$UI/Draw.disabled = true
-			for card in $UI/Pot.get_children().slice(1):
-				card.disabled = true
-			$UI/New.disabled = false
-			for card in $UI/Player1/MarginContainer/Cards.get_children():
-				card.disabled = false
+			enable_discard_interactions()
 
-func draw_card():
+
+func disable_interactions():
+	$UI/Draw.disabled = true
+	for card in $UI/Pot.get_children().slice(1):
+		card.disabled = true
+	$UI/New.disabled = true
+	for card in $UI/Player1/MarginContainer/Cards.get_children():
+		card.disabled = true
+		
+func enable_draw_interactions():
+	disable_interactions()
 	$UI/Draw.disabled = false
 	for card in $UI/Pot.get_children().slice(1):
 		if card.card != "none":
 			card.disabled = false
-	#await drew
-	$UI/Draw.disabled = true
-	for card in $UI/Pot.get_children().slice(1):
-		card.disabled = true
-
-func play_card():
+	
+func enable_discard_interactions():
+	disable_interactions()
 	$UI/New.disabled = false
 	for card in $UI/Player1/MarginContainer/Cards.get_children():
 		card.disabled = false
-	#await discarded
-	$UI/New.disabled = true
-	for card in $UI/Player1/MarginContainer/Cards.get_children():
-		card.disabled = true
 
 
 func _on_menu_pressed() -> void:

@@ -2,7 +2,7 @@
 
 # project metadata
 name := "hotpot"
-version := "1.0.0"
+version := "1.0.1"
 
 # deployment configuration
 user := "root"
@@ -66,7 +66,7 @@ build: build-server build-web build-linux build-windows build-appimage
 
 # Build and tag Docker image
 dockerize: build-server
-    docker build -t {{name}}-server:latest .
+    docker build -t {{name}}-server:{{version}} .
     docker image tag {{name}}-server:{{version}} {{name}}-server:latest
 
 
@@ -78,8 +78,7 @@ deploy: dockerize build-web
     scp -i {{identity_key}} build/web/* docker-compose.yaml {{user}}@{{remote_host}}:{{app_root}}/
     ssh -i {{identity_key}} {{user}}@{{remote_host}} << END
         cd {{app_root}}
-        docker image tag $name:$version $name:latest
-        docker compose down
+        docker image tag {{name}}-server:{{version}} {{name}}-server:latest
         docker compose up -d
     END
 

@@ -73,7 +73,7 @@ func position_of(card):
 		return null
 
 
-func winning_hand(hand: Array):
+func is_winning_hand(hand: Array):
 	hand.sort_custom(sort)
 	var sets = 0
 	
@@ -85,10 +85,14 @@ func winning_hand(hand: Array):
 				hand.remove_at(i)
 			i = -1
 		elif hand.slice(i, i + 3).all(func(e): return get_type_of(e) == get_type_of(hand[i])):
-			if hand[i] != hand[i + 1] and hand[i] != hand[i + 2] and hand[i + 1] != hand[i + 2]:
+			var ndx = card_names().find(hand[i])
+			var j = hand.find(card_names()[ndx + 1])
+			var k = hand.find(card_names()[ndx + 2])
+			
+			if j >= 0 and k >= 0:
 				sets += 1
-				for __ in range(3):
-					hand.remove_at(i)
+				for n in [k, j, i]:
+					hand.remove_at(n)
 				i = -1
 		i += 1
 	return sets == 3

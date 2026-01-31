@@ -2,6 +2,7 @@ extends Node
 
 var players = {}
 
+
 func rpc_room(method: Callable, ...args):
 	for id in players.keys().filter(func(e): return e > 0):
 		method.rpc_id.callv([id] + args)
@@ -10,8 +11,8 @@ func rpc_room(method: Callable, ...args):
 func initialize_game(ids: Array):
 	for id in ids:
 		players[id] = { "ready": false, "hand": [], "pot": "none" }
-	
 	print("Room ", name, " initialized with players: ", players.keys())
+
 
 func start_game():
 	var deck = Cards.get_deck()
@@ -26,7 +27,6 @@ func start_game():
 			$RPC.deal_hand.rpc_id(id, players[id].hand)
 		deck = deck.slice(8)
 	print(players)
-	
 	
 	var turn = -1
 	while true:
@@ -50,7 +50,7 @@ func start_game():
 				rpc_room($RPC.update_pot, loc, "none")
 		$RPC.deal_card.rpc_id(players.keys()[turn], card)
 		
-		if Cards.winning_hand(players[players.keys()[turn]].hand + [card]):
+		if Cards.is_winning_hand(players[players.keys()[turn]].hand + [card]):
 			print(players.keys()[turn], ' won')
 			rpc_room($RPC.game_won, players.keys()[turn], players)
 			return

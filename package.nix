@@ -7,7 +7,7 @@
 
 let
   pname = "hotpot";
-  version = "1.0.0";
+  version = "1.0.1";
 
   src = fetchurl {
     url = "https://github.com/jeremymeadows/hotpot/releases/download/v${version}/hotpot-x86_64.appimage";
