@@ -19,19 +19,19 @@ default:
 
 [private]
 build-server:
-    godot --headless --export-release Server
+    godot --headless --no-header --export-release Server
 
 [private]
 build-web:
-    godot --headless --export-release Web
+    godot --headless --no-header --export-release Web
 
 [private]
 build-linux:
-    godot --headless --export-release "Linux Desktop"
+    godot --headless --no-header --export-release "Linux Desktop"
 
 [private]
 build-windows:
-    godot --headless --export-release "Windows Desktop"
+    godot --headless --no-header --export-release "Windows Desktop"
 
 [private]
 build-appimage: build-linux

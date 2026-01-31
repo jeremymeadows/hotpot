@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdkdrhhls4ett"]
+[gd_scene load_steps=6 format=3 uid="uid://cdkdrhhls4ett"]
 
 [ext_resource type="Script" uid="uid://bdwyrbafyde67" path="res://client/match.gd" id="1_7sg6s"]
 [ext_resource type="Script" uid="uid://c7k60i74e2cu2" path="res://common/rpc.gd" id="2_h1q33"]
 [ext_resource type="Theme" uid="uid://c8e6glxqn6suj" path="res://assets/theme.tres" id="3_h1q33"]
 [ext_resource type="PackedScene" uid="uid://dtaf5jyt5pdui" path="res://client/card.tscn" id="3_ix7t0"]
+[ext_resource type="PackedScene" uid="uid://b7f0v5m2sjlgs" path="res://client/timer.tscn" id="5_ix7t0"]
 
 [node name="Main" type="Node"]
 
@@ -32,21 +33,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.92941177, 0.7411765, 0.44705883, 1)
-
-[node name="Status" type="Label" parent="Matches/Match/UI"]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.72200006
-anchor_right = 1.0
-offset_left = -827.7441
-offset_top = 4.0
-offset_right = -836.0
-offset_bottom = 27.0
-grow_horizontal = 2
-theme = ExtResource("3_h1q33")
-theme_override_font_sizes/font_size = 24
-text = "Your turn"
 
 [node name="ID" type="Label" parent="Matches/Match/UI"]
 layout_mode = 1
@@ -301,6 +287,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_h1q33")
 alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Card1" parent="Matches/Match/UI/Player3/MarginContainer/Cards" instance=ExtResource("3_ix7t0")]
 custom_minimum_size = Vector2(30, 45)
@@ -520,6 +507,28 @@ theme = ExtResource("3_h1q33")
 disabled = true
 card = "none"
 
+[node name="Status" type="Label" parent="Matches/Match/UI"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.72200006
+anchor_right = 1.0
+offset_left = -827.7441
+offset_top = 4.0
+offset_right = -836.0
+offset_bottom = 38.0
+grow_horizontal = 2
+theme = ExtResource("3_h1q33")
+theme_override_font_sizes/font_size = 24
+text = "Your turn"
+
+[node name="Timer" parent="Matches/Match/UI/Status" instance=ExtResource("5_ix7t0")]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 38.0
+offset_right = 194.0
+offset_bottom = 138.0
+
 [node name="GameOver" type="Label" parent="Matches/Match/UI"]
 visible = false
 layout_mode = 1
@@ -542,6 +551,12 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 156.0
 offset_bottom = 75.0
+theme = ExtResource("3_h1q33")
 text = "Menu"
+
+[node name="Players" type="Control" parent="Matches/Match/UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="pressed" from="Matches/Match/UI/GameOver/Menu" to="Matches/Match" method="_on_menu_pressed"]

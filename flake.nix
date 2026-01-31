@@ -6,6 +6,7 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in {
-      packages.${system}.default = pkgs.callPackage ./hotpot.nix { };
+      packages.${system}.hotpot = pkgs.callPackage ./hotpot.nix { };
+      packages.${system}.ddefault = self.packages.${system}.hotpot;
     };
 }

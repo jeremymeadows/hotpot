@@ -58,6 +58,10 @@ func _on_close_pressed() -> void:
 	$Rules.visible = false
 
 
+func _on_quit_pressed() -> void:
+	get_tree().quit()
+
+
 func _start_game_countdown() -> void:
 	$Waiting/Timer.timeout.connect(_timer_countdown)
 	$Waiting/Timer.start(1)

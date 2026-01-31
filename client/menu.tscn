@@ -247,9 +247,23 @@ theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_putif")
 text = "X"
 
+[node name="Quit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -88.0
+offset_right = 170.0
+offset_bottom = -29.0
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+text = "Quit"
+
 [connection signal="pressed" from="Start/QuickPlay" to="." method="_on_quick_play_pressed"]
 [connection signal="pressed" from="Start/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="Start/Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="Start/Rules" to="." method="_on_rules_pressed"]
 [connection signal="pressed" from="Waiting/Cancel" to="." method="_on_cancel_pressed"]
 [connection signal="pressed" from="Rules/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
