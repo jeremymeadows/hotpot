@@ -11,7 +11,7 @@ let
 
   src = fetchurl {
     url = "https://github.com/jeremymeadows/hotpot/releases/download/v${version}/hotpot-x86_64.appimage";
-    hash = "sha256-9cE7H56kMUfYEr+57xxcCENd7DTT8RA4oxzwGeKP4w4=";
+    hash = "sha256-Axu9AifsF3GiccoYTt/MlNCOU/3qxp0pltjR55id6Nk=";
   };
 
   appimageContents = appimageTools.extract { inherit pname version src; };
